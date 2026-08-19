@@ -703,6 +703,7 @@ footer.site img.mark{height:56px;width:56px;max-width:100%;object-fit:contain;fi
         <div class="field"><label for="f-notes">Anything we should know?</label><textarea id="f-notes"></textarea></div>
         <button type="submit" class="btn">Send my enquiry</button>
         <p class="note" id="form-msg" style="margin-top:.9rem"></p>
+        <p class="note" style="margin-top:.6rem">Prefer to skip the form? Call <b>0407 537 976</b> or email <b>info@blancoz.cleaning</b>.</p>
       </form>
 
       <aside class="details">
@@ -776,7 +777,20 @@ document.querySelectorAll('nav.main button').forEach(function(b){
 });
 function submitted(e){
   e.preventDefault();
+  var v = function(id){ var el=document.getElementById(id); return el ? el.value.trim() : ''; };
+  var body =
+    'Name: '          + v('f-name')   + '\n' +
+    'Business: '      + v('f-biz')    + '\n' +
+    'Email: '         + v('f-email')  + '\n' +
+    'Phone: '         + v('f-phone')  + '\n' +
+    'Suburb: '        + v('f-suburb') + '\n' +
+    'Premises type: ' + v('f-type')   + '\n' +
+    'Frequency: '     + v('f-freq')   + '\n\n' +
+    'Notes:\n'       + (v('f-notes') || '(none)') + '\n';
+  var subject = 'Website enquiry - ' + (v('f-biz') || v('f-name') || 'new enquiry');
   document.getElementById('form-msg').textContent =
-    'Thanks — we have got it. You will hear from us within one business day, usually sooner. If it is urgent, call 0407 537 976.  (Preview only — nothing was sent.)';
+    'Opening your email app so you can send this to us. If nothing opens, call 0407 537 976 or email info@blancoz.cleaning directly.';
+  window.location.href = 'mailto:info@blancoz.cleaning?subject='
+    + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
 }
 </script>
