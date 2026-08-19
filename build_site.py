@@ -117,7 +117,7 @@ LD = '''{
   "@type": "ProfessionalService",
   "@id": "%(site)s/#business",
   "name": "Blancoz Cleaning",
-  "description": "Commercial and builders cleaning across Melbourne. Family owned and operated since 2008.",
+  "description": "Commercial and builders cleaning across Melbourne CBD, Bayside and the South Eastern Suburbs. Family owned and operated since 2008.",
   "url": "%(site)s",
   "telephone": "+61407537976",
   "email": "info@blancoz.cleaning",
@@ -127,7 +127,6 @@ LD = '''{
   "priceRange": "$$",
   "address": {
     "@type": "PostalAddress",
-    "addressLocality": "Brighton East",
     "addressRegion": "VIC",
     "postalCode": "3187",
     "addressCountry": "AU"
@@ -137,7 +136,6 @@ LD = '''{
     {"@type": "Place", "name": "Melbourne CBD"},
     {"@type": "Place", "name": "Bayside"},
     {"@type": "Place", "name": "Brighton"},
-    {"@type": "Place", "name": "Brighton East"},
     {"@type": "Place", "name": "Black Rock"},
     {"@type": "Place", "name": "Hampton"},
     {"@type": "Place", "name": "Sandringham"},
@@ -181,7 +179,7 @@ doc = f"""<!doctype html>
 <link rel="canonical" href="{SITE}/">
 <meta name="theme-color" content="#0E0F11">
 <meta name="geo.region" content="AU-VIC">
-<meta name="geo.placename" content="Brighton East, Melbourne">
+<meta name="geo.placename" content="Melbourne, Victoria">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Blancoz Cleaning">
 <meta property="og:title" content="Commercial Cleaning Melbourne | Blancoz Cleaning">
