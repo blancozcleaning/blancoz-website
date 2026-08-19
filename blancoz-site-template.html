@@ -106,9 +106,9 @@ ul{margin:0;padding:0;list-style:none}
   backdrop-filter:blur(10px);
   border-bottom:1px solid var(--rule);
 }
-.site-header .wrap{display:flex;align-items:center;gap:1.5rem;min-height:74px;flex-wrap:wrap}
+.site-header .wrap{display:flex;align-items:center;gap:1.5rem;min-height:96px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:.6rem;text-decoration:none;flex:0 0 auto}
-.brand img{height:26px;width:auto;mix-blend-mode:multiply}
+.brand img{height:64px;width:auto;max-width:100%;object-fit:contain;mix-blend-mode:multiply}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .brand img{filter:invert(1);mix-blend-mode:screen}}
 :root[data-theme="dark"] .brand img{filter:invert(1);mix-blend-mode:screen}
 nav.main{display:flex;gap:.15rem;margin-left:auto;flex-wrap:wrap}
@@ -246,7 +246,7 @@ footer.site p,footer.site li{color:var(--band-text);font-size:var(--step--1);lin
 footer.site .flist li{padding:.28rem 0}
 footer.site .bottom{margin-top:clamp(2rem,4vw,3rem);border-top:1px solid rgba(128,128,128,.35);padding:1.1rem 0 1.6rem;display:flex;flex-wrap:wrap;gap:.35rem .9rem;justify-content:center}
 footer.site .bottom .label{font-size:.62rem}
-footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-bottom:.2rem}
+footer.site img.mark{height:56px;width:56px;max-width:100%;object-fit:contain;filter:invert(1);opacity:.9;margin-bottom:.5rem}
 @media (prefers-color-scheme: dark){:root:not([data-theme="light"]) footer.site img.mark{filter:none}}
 :root[data-theme="dark"] footer.site img.mark{filter:none}
 </style>
@@ -260,7 +260,7 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
 
 <div class="announce">
   <div class="wrap">
-    <span class="label">Melbourne CBD, South East &amp; Mornington Peninsula</span>
+    <span class="label">Melbourne CBD &amp; South Eastern Suburbs</span>
     <span class="dot">&middot;</span>
     <span class="label">Labour Hire Authority Licensed</span>
     <span class="dot">&middot;</span>
@@ -278,7 +278,6 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
       <button type="button" data-page="why">Why Blancoz</button>
       <button type="button" data-page="contact">Contact</button>
     </nav>
-    <button type="button" class="btn" onclick="go('contact')">Get a Quote</button>
   </div>
 </header>
 
@@ -293,9 +292,9 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
     <div class="wrap stack gap-m">
       <span class="label">Commercial &amp; builders cleaning &middot; Since 2008</span>
       <h1>Commercial cleaning Melbourne businesses actually stay with</h1>
-      <p class="sub">Family owned and operated since 2008. Police-checked teams, $20M public liability, and a photo report after every clean, across Melbourne CBD, the South Eastern Suburbs and the Mornington Peninsula.</p>
+      <p class="sub">Family owned and operated since 2008. Reliable, easy to talk to, and an eye for detail, across Melbourne CBD and the South Eastern Suburbs.</p>
       <div class="hero-actions">
-        <button type="button" class="btn on-dark" onclick="go('contact')">Get a Quote</button>
+        <button type="button" class="btn on-dark" onclick="go('contact')">Contact Us</button>
         <button type="button" class="btn on-dark ghost" onclick="go('services')">See Our Services</button>
       </div>
     </div>
@@ -318,12 +317,12 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
         <span class="label">The problem</span>
         <h2>You should not have to check whether the cleaners came</h2>
         <p style="color:var(--ink-soft)">Most cleaning contracts fail the same way. The first month is excellent, the third month slips, and by month six you are the one noticing the bins.</p>
-        <p style="color:var(--ink-soft)">Blancoz is built to stop that happening: the same cleaner attends your site each visit, works to a written checklist agreed with you, and sends a photo record when they finish. If something is not right, you call the owner directly, not a call centre.</p>
+        <p style="color:var(--ink-soft)">Blancoz is built to stop that happening: the same cleaner attends your site each visit, works to a written checklist agreed with you, and sends a photo record when they finish. If something is not right, you reach an owner who already knows your site, not a call centre.</p>
         <div><button type="button" class="btn ghost" onclick="go('why')">How we keep standards up</button></div>
       </div>
       <figure>
         <img src="__IMG_OFFICE2__" alt="An architects studio cleaned by Blancoz">
-        <figcaption>Architecture studio, Bayside &middot; weekly service</figcaption>
+        <figcaption>Architecture studio, Richmond &middot; weekly service</figcaption>
       </figure>
     </div>
   </section>
@@ -336,7 +335,7 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
           <img src="__IMG_OFFICE1__" alt="Open plan office with bay views">
           <div class="body">
             <h3>Commercial Cleaning</h3>
-            <p>Regular scheduled cleaning for offices, medical rooms, childcare centres, showrooms and community facilities. From twice a week to daily.</p>
+            <p>Regular scheduled cleaning for offices, medical rooms, childcare centres, showrooms and sporting and community facilities. From twice a week to daily.</p>
             <div class="more"><span>Read more</span></div>
           </div>
         </li>
@@ -344,7 +343,7 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
           <img src="__IMG_BKITCHEN__" alt="Luxury kitchen after a builders clean">
           <div class="body">
             <h3>Builders Cleaning</h3>
-            <p>Final detail cleans that get a completed build ready for handover, plus pre and post-development site clean-ups with skip and bobcat hire.</p>
+            <p>Final detail cleans that get a completed build ready for handover, plus a photographed defect list so anything missing or damaged is fixed before the client walks in.</p>
             <div class="more"><span>Read more</span></div>
           </div>
         </li>
@@ -367,8 +366,8 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
         <li><h3>Offices and professional services</h3><p>20+ desks, two or more services a week</p></li>
         <li><h3>Childcare centres</h3><p>Five days a week, WWCC-checked cleaners, same face every visit</p></li>
         <li><h3>Medical and allied health</h3><p>Clinical-grade sanitisation and infection-control routines</p></li>
-        <li><h3>Owners corporations</h3><p>Common areas, lobbies, lifts, car parks, bin rooms</p></li>
-        <li><h3>Builders and developers</h3><p>Final detail cleans and site clean-ups</p></li>
+        <li><h3>Sporting and community facilities</h3><p>Change rooms, social rooms, clubrooms and amenities</p></li>
+        <li><h3>Builders and developers</h3><p>Final detail cleans, handover ready, with a defect list</p></li>
       </ul>
       <div><button type="button" class="btn ghost" onclick="go('industries')">See how we work in your sector</button></div>
     </div>
@@ -380,11 +379,11 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
       <div class="quotes">
         <blockquote>
           <p>&ldquo;We are always happy with Blancoz Cleaning. They attend our office regularly, they are always on schedule, and they always do an amazing job. In the two years we have engaged Blancoz we have had no problems, and I would have no hesitation in recommending their cleaning services to anyone.&rdquo;</p>
-          <div class="who"><strong>Hamilton Thomas Lawyers</strong><span>Legal practice &middot; monthly service</span></div>
+          <div class="who"><strong>Hamilton Thomas Lawyers</strong><span>Legal practice &middot; weekly service</span></div>
         </blockquote>
         <blockquote>
           <p>&ldquo;We have been working with the Blancoz Cleaning team for over four years. They understand the unique demands of our building projects and adapt to our schedules, always delivering exceptional results. Their proactive communication and detailed photo reports keep us informed and confident that every job is completed to the highest standard.&rdquo;</p>
-          <div class="who"><strong>Hilstin Homes</strong><span>Residential builder &middot; four projects</span></div>
+          <div class="who"><strong>Hilstin Homes</strong><span>Residential builder &middot; all projects</span></div>
         </blockquote>
         <blockquote>
           <p>&ldquo;The team at Blancoz have been cleaning our offices for over 12 months now. They are diligent and ensure all elements of the clean are done to the highest of standards. I would highly recommend Blancoz to anyone looking for reliable cleaners for their business.&rdquo;</p>
@@ -402,9 +401,9 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
     <div class="wrap stack gap-m" style="text-align:center;align-items:center">
       <span class="label">Get started</span>
       <h2>Let&rsquo;s talk about your site</h2>
-      <p class="narrow" style="color:var(--band-text)">Tell us the premises, the frequency and what needs doing, and we will come back with a written quote. No obligation, and you deal with the owner from the first call.</p>
+      <p class="narrow" style="color:var(--band-text)">Tell us the premises, the frequency and what needs doing, and we will come back with a written quote. No obligation, and an owner is across your site from the first call.</p>
       <div class="hero-actions" style="justify-content:center">
-        <button type="button" class="btn on-dark" onclick="go('contact')">Get a Quote</button>
+        <button type="button" class="btn on-dark" onclick="go('contact')">Contact Us</button>
       </div>
       <span class="label">Or call 0407 537 976</span>
     </div>
@@ -427,9 +426,9 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
         <div class="stack gap-m">
           <span class="label">01 &middot; Commercial cleaning</span>
           <h2>Commercial cleaning</h2>
-          <p style="color:var(--ink-soft)">Scheduled cleaning for offices, government premises, hospitals and clinics, display units, showrooms, community facilities and childcare centres. Whether you need a service twice a week or every weekday, the scope is agreed in writing and worked to a checklist.</p>
+          <p style="color:var(--ink-soft)">Scheduled cleaning for offices, clinics, display units, showrooms, sporting and community facilities, and childcare centres. Regular service with an agreed scope and frequency, all in writing and worked to a checklist.</p>
         </div>
-        <figure><img src="__IMG_OFFICE3__" alt="Office with glass partitions"><figcaption>Bayside tenancy &middot; glass partitions and open plan</figcaption></figure>
+        <figure><img src="__IMG_OFFICE3__" alt="Office with glass partitions"><figcaption>Media agency, Black Rock &middot; glass partitions and open plan</figcaption></figure>
       </div>
       <div class="stack gap-m" style="margin-top:1rem">
         <span class="label">Included as standard</span>
@@ -461,6 +460,7 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
           <span class="label">02 &middot; Builders cleaning</span>
           <h2>Builders cleaning</h2>
           <p style="color:var(--ink-soft)">The final detail clean that gets a completed project ready for handover. We have done this for residential builders for years and we work to your program, not ours.</p>
+          <p style="color:var(--ink-soft)">We also send a defect list. If we find something missing or damaged while we clean, a handle off a cupboard, a mark on a wall, caulking not finished, we photograph it and send it through, so you can put it right before the client walks in rather than after.</p>
         </div>
         <figure><img src="__IMG_BHAND__" alt="Empty room ready for handover"><figcaption>Handover clean &middot; residential build</figcaption></figure>
       </div>
@@ -481,23 +481,25 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
   <section class="band">
     <div class="wrap two">
       <div class="stack gap-m">
-        <span class="label">03 &middot; Site clean-ups</span>
-        <h2>Site clean-ups</h2>
-        <p style="color:var(--ink-soft)">Pre or post-development cleans that clear a site of waste and debris so your project can start or close out.</p>
-        <ul class="spec" style="grid-template-columns:1fr">
-          <li><b>Skip hire</b><span>Skips supplied to remove site waste and debris</span></li>
-          <li><b>Bobcat hire</b><span>For heavier loads and bulk clearing</span></li>
-        </ul>
+        <span class="label">03 &middot; Express clean</span>
+        <h2>Express clean</h2>
+        <p style="color:var(--ink-soft)">Something has gone wrong and you need a site cleaned within 24 hours. Call 0407 537 976 and we will do everything we can to get a team to you.</p>
       </div>
       <figure><img src="__IMG_BDRAWER__" alt="Detail of a cleaned drawer interior"><figcaption>Detail matters &middot; inside every drawer and cupboard</figcaption></figure>
     </div>
   </section>
 
   <section class="band">
-    <div class="wrap stack gap-m narrow">
-      <span class="label">04 &middot; Express clean</span>
-      <h2>Express clean</h2>
-      <p style="color:var(--ink-soft)">Something has gone wrong and you need a site cleaned within 24 hours. Call 0407 537 976 and we will do everything we can to get a team to you.</p>
+    <div class="wrap stack gap-l">
+      <div class="two flip">
+        <div class="stack gap-m">
+          <span class="label">04 &middot; Childcare centres</span>
+          <h2>Childcare cleaning, including outbreaks</h2>
+          <p style="color:var(--ink-soft)">Five days a week, Working With Children Checked cleaners, and the same face every visit. We handle routine detail cleans and infectious outbreak cleans worked to Department of Health guidelines, so the centre reopens safely and on time.</p>
+        </div>
+        <figure><img src="__IMG_CHILD2__" alt="Childcare centre playroom after cleaning"><figcaption>Childcare centre, Richmond &middot; five days a week</figcaption></figure>
+      </div>
+      <figure style="margin-top:1.2rem"><img src="__IMG_CHILD1__" alt="Childcare centre activity room after cleaning"><figcaption>Detail cleans and outbreak cleans &middot; Richmond</figcaption></figure>
     </div>
   </section>
 
@@ -505,7 +507,7 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
     <div class="wrap stack gap-m" style="text-align:center;align-items:center">
       <h2>Not sure what you need?</h2>
       <p class="narrow" style="color:var(--band-text)">Send us the premises and the problem. We will tell you what we would do and what it costs.</p>
-      <div><button type="button" class="btn on-dark" onclick="go('contact')">Get a Quote</button></div>
+      <div><button type="button" class="btn on-dark" onclick="go('contact')">Contact Us</button></div>
     </div>
   </section>
 </div>
@@ -544,24 +546,35 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
           <li><b>Five days a week</b><span>Schedules worked around close of care</span></li>
         </ul>
       </div>
-      <figure><img src="__IMG_OFFICE3__" alt="Clean interior with glass partitions"><figcaption>Compliance-driven premises &middot; five days a week</figcaption></figure>
+      <figure><img src="__IMG_CHILD3__" alt="Childcare centre interior after cleaning"><figcaption>Childcare centre, Richmond &middot; five days a week</figcaption></figure>
+    </div>
+  </section>
+
+  <section class="band">
+    <div class="wrap stack gap-m narrow">
+      <h2>Medical and allied health</h2>
+      <p style="color:var(--ink-soft)">Consulting rooms, treatment rooms and allied health clinics. Clinical surfaces, contact points and waiting areas are treated to an infection-control routine agreed with the practice, and bathrooms and kitchens are sanitised every visit. We currently service a Bayside spine and sports clinic on a fortnightly cycle.</p>
     </div>
   </section>
 
   <section class="band">
     <div class="wrap two">
       <div class="stack gap-m">
-        <h2>Medical and allied health</h2>
-        <p style="color:var(--ink-soft)">Consulting rooms, treatment rooms and allied health clinics. Clinical surfaces, contact points and waiting areas are treated to an infection-control routine agreed with the practice, and bathrooms and kitchens are sanitised every visit. We currently service a Bayside spine and sports clinic on a fortnightly cycle.</p>
+        <h2>Retail and showrooms</h2>
+        <p style="color:var(--ink-soft)">Shopfronts, display units and showrooms, where the premises are the pitch. Glass, front-of-house and fitting areas cleaned before doors open, so the first thing a customer sees is the product rather than the finish on the floor.</p>
       </div>
-      <figure><img src="__IMG_RETAIL__" alt="Retail and consulting space"><figcaption>Consulting and front-of-house &middot; fortnightly</figcaption></figure>
+      <figure><img src="__IMG_RETAIL__" alt="Retail and consulting space"><figcaption>Retail front-of-house &middot; fortnightly</figcaption></figure>
     </div>
   </section>
 
   <section class="band">
-    <div class="wrap stack gap-m narrow">
-      <h2>Owners corporations and building managers</h2>
-      <p style="color:var(--ink-soft)">Lobbies, common areas, lifts, stairwells, car parks and bin rooms. One point of contact, one invoice arrangement, and consistent standards across every building in your portfolio. We are happy to quote a whole portfolio rather than one address at a time.</p>
+    <div class="wrap two">
+      <div class="stack gap-m">
+        <h2>Sporting and community facilities</h2>
+        <p style="color:var(--ink-soft)">Sporting clubs, pavilions and community buildings. Change rooms, social rooms, kitchens and amenities, cleaned around fixtures and functions rather than office hours.</p>
+        <p style="color:var(--ink-soft)">We work to the club&rsquo;s calendar, turn rooms around after events, and hold the areas members actually judge you on, the change rooms and the toilets, to a standard they notice. We currently clean for a community football club on a weekly cycle.</p>
+      </div>
+      <figure><img src="__IMG_SPORT1__" alt="Community clubroom overlooking the oval"><figcaption>Community clubroom &middot; windows and social rooms</figcaption></figure>
     </div>
   </section>
 
@@ -569,17 +582,21 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
     <div class="wrap two flip">
       <div class="stack gap-m">
         <h2>Builders and developers</h2>
-        <p style="color:var(--ink-soft)">Final detail cleans before handover and site clean-ups before or after development, including skip and bobcat hire. We adapt to your build program and send photo reports so you can sign off without attending.</p>
+        <p style="color:var(--ink-soft)">Final detail cleans that get a completed build ready for handover. We adapt to your build program and send photo reports so you can sign off without attending.</p>
+        <p style="color:var(--ink-soft)">We also send a defect list. If we find something missing or damaged while we clean, a handle off a cupboard, a mark on a wall, caulking not finished, we photograph it and send it through, so you can put it right before the client walks in rather than after.</p>
       </div>
       <figure><img src="__IMG_BKITCHEN__" alt="Luxury kitchen after a builders clean"><figcaption>Handover detail clean &middot; residential build</figcaption></figure>
+    </div>
+    <div class="wrap" style="margin-top:1.2rem">
+      <figure><img src="__IMG_BHAND__" alt="Empty room ready for handover"><figcaption>Ready for handover &middot; defect list sent with the photo report</figcaption></figure>
     </div>
   </section>
 
   <section class="band dark">
     <div class="wrap stack gap-m" style="text-align:center;align-items:center">
       <h2>Your sector not listed?</h2>
-      <p class="narrow" style="color:var(--band-text)">We also clean government premises, hospitals, display units, showrooms and community facilities. Ask us.</p>
-      <div><button type="button" class="btn on-dark" onclick="go('contact')">Get a Quote</button></div>
+      <p class="narrow" style="color:var(--band-text)">We also clean display units, showrooms, and sporting and community facilities. Ask us.</p>
+      <div><button type="button" class="btn on-dark" onclick="go('contact')">Contact Us</button></div>
     </div>
   </section>
 </div>
@@ -589,8 +606,8 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
   <section class="hero small">
     <div class="wrap stack gap-m">
       <span class="label">Why Blancoz</span>
-      <h1>Family owned since 2008. You deal with the owner.</h1>
-      <p class="sub narrow">Blancoz is a family-owned and operated Melbourne cleaning business specialising in commercial and builders cleaning. Small enough that you get the owner on the phone, established enough to carry the licensing and insurance a serious contract needs.</p>
+      <h1>Family owned since 2008. The owners know your site.</h1>
+      <p class="sub narrow">Blancoz is a family-owned and operated Melbourne cleaning business specialising in commercial and builders cleaning. Small enough that the owners know your site, your schedule and the team who attend it, and care how it is maintained. Established enough to carry the licensing and insurance a serious contract needs.</p>
     </div>
   </section>
 
@@ -600,7 +617,7 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
       <ul class="spec">
         <li><b>Professional team</b><span>Police-checked, trained and friendly</span></li>
         <li><b>Safety and assurance</b><span>$20M public liability insurance and current WorkCover</span></li>
-        <li><b>Direct communication</b><span>Speak to the business owner, not a call centre</span></li>
+        <li><b>Direct communication</b><span>Owners who know your site and are contactable when it matters</span></li>
         <li><b>Quality control</b><span>Checklists, written procedures and photo reports on every job</span></li>
         <li><b>Licensed</b><span>Labour Hire Authority licensed in Victoria</span></li>
       </ul>
@@ -634,14 +651,14 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
     <div class="wrap stack gap-m narrow">
       <span class="label">Coverage</span>
       <h2>Where we work</h2>
-      <p style="color:var(--ink-soft)">Melbourne CBD, the South Eastern Suburbs and the Mornington Peninsula. Head office in Brighton East.</p>
+      <p style="color:var(--ink-soft)">Melbourne CBD and the South Eastern Suburbs. Head office in Brighton East.</p>
     </div>
   </section>
 
   <section class="band dark">
     <div class="wrap stack gap-m" style="text-align:center;align-items:center">
-      <h2>Talk to the owner, not a call centre</h2>
-      <div><button type="button" class="btn on-dark" onclick="go('contact')">Get a Quote</button></div>
+      <h2>Owners who know your site, not a call centre</h2>
+      <div><button type="button" class="btn on-dark" onclick="go('contact')">Contact Us</button></div>
     </div>
   </section>
 </div>
@@ -651,8 +668,8 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
   <section class="hero small">
     <div class="wrap stack gap-m">
       <span class="label">Contact</span>
-      <h1>Get a quote</h1>
-      <p class="sub narrow">Tell us about the premises and we will come back with a written quote, usually within one business day.</p>
+      <h1>Contact us</h1>
+      <p class="sub narrow">Tell us about the premises and we will come back with a written quote, usually within one business day. No obligation.</p>
     </div>
   </section>
 
@@ -672,8 +689,8 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
           <label for="f-type">What type of premises is it?</label>
           <select id="f-type">
             <option>Office</option><option>Childcare centre</option><option>Medical or allied health</option>
-            <option>Owners corporation / common areas</option><option>Retail or showroom</option>
-            <option>Community facility</option><option>Building site / builders clean</option><option>Other</option>
+            <option>Retail or showroom</option>
+            <option>Sporting or community facility</option><option>Building site / builders clean</option><option>Other</option>
           </select>
         </div>
         <div class="field">
@@ -684,7 +701,7 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
           </select>
         </div>
         <div class="field"><label for="f-notes">Anything we should know?</label><textarea id="f-notes"></textarea></div>
-        <button type="submit" class="btn">Request my quote</button>
+        <button type="submit" class="btn">Send my enquiry</button>
         <p class="note" id="form-msg" style="margin-top:.9rem"></p>
       </form>
 
@@ -693,8 +710,7 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
           <dt>Phone</dt><dd>0407 537 976</dd>
           <dt>Email</dt><dd>info@blancoz.cleaning</dd>
           <dt>Office</dt><dd>Brighton East, VIC 3187</dd>
-          <dt>Service area</dt><dd>Melbourne CBD, South Eastern Suburbs, Mornington Peninsula</dd>
-          <dt>Hours</dt><dd>Monday to Friday, with cleaning scheduled out of hours to suit your premises</dd>
+          <dt>Service area</dt><dd>Melbourne CBD and the South Eastern Suburbs</dd>
         </dl>
       </aside>
     </div>
@@ -707,7 +723,8 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
         <span class="label">$20M Public Liability</span><span class="dot" style="color:var(--rule-strong)">&middot;</span>
         <span class="label">WorkCover Current</span><span class="dot" style="color:var(--rule-strong)">&middot;</span>
         <span class="label">Police-Checked Staff</span><span class="dot" style="color:var(--rule-strong)">&middot;</span>
-        <span class="label">Family Owned Since 2008</span>
+        <span class="label">Family Owned Since 2008</span><span class="dot" style="color:var(--rule-strong)">&middot;</span>
+        <span class="label">ABN 59 169 925 616</span>
       </div>
     </div>
   </section>
@@ -725,7 +742,7 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
       <div class="stack gap-s">
         <span class="label">Pages</span>
         <ul class="flist">
-          <li>Services</li><li>Industries</li><li>Why Blancoz</li><li>Get a Quote</li>
+          <li>Services</li><li>Industries</li><li>Why Blancoz</li><li>Contact</li>
         </ul>
       </div>
       <div class="stack gap-s">
@@ -737,6 +754,7 @@ footer.site img.mark{height:34px;width:auto;filter:invert(1);opacity:.9;margin-b
     </div>
     <div class="bottom">
       <span class="label">&copy; Blancoz Cleaning 2026</span><span class="dot" style="color:var(--band-muted)">&middot;</span>
+      <span class="label">ABN 59 169 925 616</span><span class="dot" style="color:var(--band-muted)">&middot;</span>
       <span class="label">Labour Hire Authority Licensed</span><span class="dot" style="color:var(--band-muted)">&middot;</span>
       <span class="label">$20M Public Liability</span>
     </div>
