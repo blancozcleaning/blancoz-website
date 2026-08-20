@@ -101,6 +101,38 @@ def dims(p: pathlib.Path):
             i += 2 + struct.unpack(">H", b[i+2:i+4])[0]
     return None
 
+# ---------------------------------------------------------------------------
+# GUARD: never silently overwrite hand edits to index.html
+#
+# Juan edits index.html directly in the GitHub web editor. This script
+# REGENERATES index.html from blancoz-site-template.html, so an unguarded run
+# would wipe his work without saying so. After each successful build we record
+# a checksum of what we produced. On the next run, if index.html no longer
+# matches that checksum, someone has edited it by hand and this script stops.
+#
+# If you hit this: diff index.html against the last build, port the changes
+# into blancoz-site-template.html, then delete .index.build.sha256 and re-run.
+# ---------------------------------------------------------------------------
+import hashlib
+
+STAMP = HERE / ".index.build.sha256"
+_idx = HERE / "index.html"
+
+def _sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+if _idx.exists() and STAMP.exists():
+    if _sha(_idx) != STAMP.read_text(encoding="utf-8").strip():
+        sys.exit(
+            "REFUSING TO BUILD: index.html has been edited by hand since the last build.\n"
+            "Rebuilding would destroy those edits.\n\n"
+            "Do this instead:\n"
+            "  1. git log -p -- index.html   (see what changed)\n"
+            "  2. port those changes into blancoz-site-template.html\n"
+            "  3. rm .index.build.sha256\n"
+            "  4. re-run this script\n"
+        )
+
 frag = (HERE / "blancoz-site-template.html").read_text(encoding="utf-8")
 used = set(re.findall(r"__IMG_([A-Z0-9]+)__", frag))
 unknown = used - set(IMAGES)
@@ -231,5 +263,6 @@ doc = f"""<!doctype html>
 """
 out = HERE / "index.html"
 out.write_text(doc, encoding="utf-8")
+STAMP.write_text(_sha(out), encoding="utf-8")
 print(f"index.html  {len(doc)/1024:.0f} KB")
 print(f"img/        {len(list(IMGDIR.iterdir()))} files, {total/1024/1024:.2f} MB total")

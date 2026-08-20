@@ -45,3 +45,12 @@ The site publishes no ABN. The correct one is 59 169 925 616, but it is register
 "The trustee for BlancOz Trust" while the business trades as Blancoz Pty Ltd. That
 discrepancy is with the accountant. Do not add an ABN to the footer until it is settled,
 because a published mismatch is worse than an omission.
+
+## Editing the site by hand
+
+`index.html` is the file the world sees, and it is safe to edit directly in the GitHub web editor.
+
+`build_site.py` regenerates `index.html` from `blancoz-site-template.html`, so a careless rebuild
+could overwrite hand edits. It cannot: after each build the script records a checksum in
+`.index.build.sha256`, and it refuses to run if `index.html` no longer matches. If you edit
+`index.html`, the next build stops and tells you to port the change into the template first.
