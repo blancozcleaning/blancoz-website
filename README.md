@@ -12,17 +12,20 @@ the domain registrar and is the remaining step to make this the real site.
 
 | File | What it is |
 | --- | --- |
-| `index.html` | The published page. Everything is inlined, including the photographs, so it has no external dependencies except Google Fonts. ~2.9MB. |
+| `index.html` | The published page, ~55KB. Safe to edit by hand, see below. |
 | `blancoz-site-template.html` | The same page with `__IMG_*__` placeholders instead of image data. Edit this, not `index.html`. |
-| `build_site.py` | Base64-encodes the photographs and writes `build/images.py`. |
+| `img/` | The 24 photographs, as real files with search-friendly names. Not base64, because Google Images cannot index a data URI. |
+| `build_site.py` | Rebuilds `index.html` from the template: copies the photos into `img/` and substitutes every `__IMG_*__` placeholder. One command, does the lot. |
 | `.nojekyll` | Stops GitHub Pages running the file through Jekyll. |
 
 ## Rebuilding after a copy change
 
 1. Edit `blancoz-site-template.html`.
-2. Run `python3 build_site.py` to regenerate the image module.
-3. Substitute the `__IMG_*__` placeholders into the template and save as `index.html`.
-4. Commit and push. GitHub Pages redeploys automatically.
+2. Run `python3 build_site.py`. It writes `index.html` for you, images and all.
+3. Commit and push. GitHub Pages redeploys automatically.
+
+Vercel serves the same page from `~/code/blancoz-vercel-deploy`, so a change is not
+everywhere until that is deployed too.
 
 ## Design decisions worth keeping
 
@@ -41,10 +44,14 @@ the domain registrar and is the remaining step to make this the real site.
 
 ## Known gap
 
-The site publishes no ABN. The correct one is 59 169 925 616, but it is registered to
-"The trustee for BlancOz Trust" while the business trades as Blancoz Pty Ltd. That
-discrepancy is with the accountant. Do not add an ABN to the footer until it is settled,
-because a published mismatch is worse than an omission.
+The site publishes no ABN. The correct one is **59 169 925 616**, and as of 20 August 2026
+the structure is confirmed legitimate: Blancoz Pty Ltd (ACN 650 655 860) acts as trustee
+for the Blancoz Trust, and the ABN is a trust ABN. That is normal and not a discrepancy.
+
+Still open before an ABN goes in the footer: **"Blancoz Cleaning" does not appear on the
+Business Names Register** against that ABN (the only name registered there is "Actions
+Drive Results"). Publishing an ABN beside an unregistered trading name invites the
+question. Settle the business name first, then add the ABN.
 
 ## Editing the site by hand
 
