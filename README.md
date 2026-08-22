@@ -42,16 +42,28 @@ everywhere until that is deployed too.
 - No numbered eyebrows on the services. They are not a sequence, so numbering them
   would be decoration pretending to be information.
 
-## Known gap
+## ABN and entity naming
 
-The site publishes no ABN. The correct one is **59 169 925 616**, and as of 20 August 2026
-the structure is confirmed legitimate: Blancoz Pty Ltd (ACN 650 655 860) acts as trustee
-for the Blancoz Trust, and the ABN is a trust ABN. That is normal and not a discrepancy.
+The footer publishes **ABN 59 169 925 616**, and that is the correct number to show. It is a
+TRUST ABN: Blancoz Pty Ltd (ACN 650 655 860) acts as trustee for the Blancoz Trust, so the
+ABN belongs to the trust rather than the company. That is why it is not simply the ACN with
+two digits in front, which is what people expect and what makes them query it.
 
-Still open before an ABN goes in the footer: **"Blancoz Cleaning" does not appear on the
-Business Names Register** against that ABN (the only name registered there is "Actions
-Drive Results"). Publishing an ABN beside an unregistered trading name invites the
-question. Settle the business name first, then add the ABN.
+Show the ABN on anything customer-facing. A tax invoice is legally required to carry the
+supplier's ABN, and without it a business client must withhold 47% of the payment. The ACN
+belongs on company paperwork, not on the website.
+
+**Still unsettled:** the business trades as **"Blancoz"** (confirmed against the Xero
+organisation record, not from how anyone describes it), and "Blancoz" is NOT on the Business
+Names Register. The only registered business name against that ABN is "Actions Drive Results".
+Registration is going through Rose Corporate. Blancoz Pty Ltd itself has no ABN of its own, so
+it does not appear on ABN Lookup at all - it is a trustee-only company and lives on ASIC's
+companies register, by ACN.
+
+Note the page currently uses "Blancoz Cleaning" in the title, meta description and the
+LocalBusiness structured data as though it were the business name. If the business name is
+"Blancoz", those should be corrected so the NAME is Blancoz and "commercial cleaning" only ever
+appears as description. Awaiting Juan's call.
 
 ## Editing the site by hand
 
