@@ -27,7 +27,9 @@ IMAGES = {
 "OFFICE2":  ("site-photos/03-office-architects-studio.jpg",
              "office-cleaning-richmond-melbourne-architecture-studio.jpg",
              "Architecture studio in Richmond Melbourne after a weekly commercial clean"),
-"OFFICE4":  ("site-photos/office-south-yarra-developer-boardroom.jpg",
+# v2, sent 22 Aug: sharper and wider than the original, which was visibly soft.
+# It is a 2.3:1 crop going into a 4:3 card, so see .card img object-position.
+"OFFICE4":  ("site-photos/office-south-yarra-developer-boardroom-v2.jpg",
              "office-cleaning-south-yarra-melbourne-boardroom.jpg",
              "Property developer's boardroom in South Yarra Melbourne cleaned by Blancoz"),
 "OFFICE3":  ("site-photos/04-office-bayside-glass-partitions.jpg",
