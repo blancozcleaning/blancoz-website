@@ -88,7 +88,7 @@ IMAGES = {
 # copy loop below, so leaving it defined costs nothing and keeps the option open.
 "SPORT4":   ("site-photos/HOLD-change-room-east-brighton-untidy.jpg",
              "sporting-club-change-room-cleaning-east-brighton-melbourne.jpg",
-             "Sporting club change rooms in East Brighton cleaned and reset by Blancoz between users"),
+             "Sporting club change rooms in East Brighton cleaned and reset by Blancoz between games"),
 "SPORT5":   ("site-photos/sporting-change-room-clean-benches.jpg",
              "sporting-club-change-room-cleaning-melbourne.jpg",
              "Sporting club change rooms cleaned and reset by Blancoz, benches clear and floor cleaned through"),
