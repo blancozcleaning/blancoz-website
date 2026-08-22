@@ -61,3 +61,38 @@ question. Settle the business name first, then add the ABN.
 could overwrite hand edits. It cannot: after each build the script records a checksum in
 `.index.build.sha256`, and it refuses to run if `index.html` no longer matches. If you edit
 `index.html`, the next build stops and tells you to port the change into the template first.
+
+## The header logotype is a generated transparent PNG
+
+`assets/logotype.jpg` is a black wordmark on a solid white plate. Placed in the header
+it shows as a white box, and the `mix-blend-mode` that used to hide it does not work,
+because the header's `backdrop-filter` isolates the element from what is behind it.
+
+`make_transparent_logo.py` cuts a real transparent PNG from that JPEG with a luminance
+key: white to fully transparent, black to fully opaque, the greys in between to matching
+partial alpha. That preserves the antialiased edges and opens the counters inside the
+letters and the crescent inside the mark. It upscales 3x first, because the source is
+only 331x107 and the header renders it at 64px on 2-3x phone screens.
+
+Re-run it only if `assets/logotype.jpg` is ever replaced:
+
+```
+python3 make_transparent_logo.py   # writes assets/logotype-transparent.png
+python3 build_site.py              # copies it into img/blancoz-cleaning-logo.png
+```
+
+Because the PNG is genuinely transparent, dark mode needs nothing but `filter:invert(1)`.
+
+## A defect class worth knowing about in this stylesheet
+
+Twice now a section has "looked wrong" and the cause was a CSS selector that never
+matched, not a value that needed tuning:
+
+- `.ledger > div` was styled, but the markup is `.ledger > li > div`, so the credentials
+  strip had no column padding and no dividers at all.
+- The mobile header rules sat BEFORE the base `.brand` / `nav.main` rules they were meant
+  to override. Equal specificity means source order wins, so every declaration in that
+  media query was dead and the nav wrapped into two lopsided rows on a phone.
+
+Before adjusting a value, confirm the selector actually matches. `make_transparent_logo.py`
+and `build_site.py` are checked; the stylesheet is worth a sweep.
