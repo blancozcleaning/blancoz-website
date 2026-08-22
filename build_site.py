@@ -183,7 +183,7 @@ for key, (src, name, alt) in IMAGES.items():
 split = frag.rindex("</style>") + len("</style>")
 head, body = frag[:split], frag[split:]
 
-SITE = "https://blancoz-website.vercel.app"
+SITE = "https://blancozcleaning.com"
 TITLE = "Commercial Cleaning Melbourne | Blancoz Cleaning | Bayside, CBD &amp; South East"
 DESC = ("Commercial and builders cleaning across Melbourne CBD, Bayside and the South Eastern "
         "Suburbs. Family owned since 2009. Labour Hire Authority licensed, police-checked staff, "
