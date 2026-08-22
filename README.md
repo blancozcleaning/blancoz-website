@@ -96,3 +96,24 @@ matched, not a value that needed tuning:
 
 Before adjusting a value, confirm the selector actually matches. `make_transparent_logo.py`
 and `build_site.py` are checked; the stylesheet is worth a sweep.
+
+## Deploying
+
+GitHub Pages redeploys itself on push. Vercel does not, and it is served from a
+separate staging directory (`~/code/blancoz-vercel-deploy`) rather than a checkout.
+
+Use `./deploy_vercel.sh`. It mirrors rather than copies: images the current build no
+longer produces are removed from the staging directory before the deploy. Copying
+alone leaves renamed or dropped photos sitting there, publicly reachable, long after
+GitHub Pages has correctly started 404ing them. That has already happened twice.
+
+```
+python3 build_site.py
+git add -A && git commit && git push     # GitHub Pages
+./deploy_vercel.sh                       # Vercel
+```
+
+Always `git fetch` and check `origin/main` before rebuilding. Juan edits `index.html`
+directly in the GitHub web editor, and `index.html` is generated, so an unported hand
+edit is silently destroyed by the next build. The checksum guard in `build_site.py`
+catches local edits; it cannot see edits that only exist on the remote.
