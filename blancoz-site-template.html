@@ -137,14 +137,17 @@ nav.main button:focus-visible,.btn:focus-visible{outline:2px solid var(--ink);ou
 @media(max-width:820px){
   header .wrap{gap:.5rem;min-height:0;padding-block:.7rem;justify-content:center}
   .brand{flex:1 1 100%;justify-content:center}
-  .brand img{height:48px}
-  nav.main{flex:1 1 100%;margin-left:0;justify-content:center;gap:.1rem .35rem;flex-wrap:wrap}
-  nav.main button{padding:.5rem .55rem;font-size:.86rem;white-space:nowrap;letter-spacing:0}
-}
-@media(max-width:400px){
-  .brand img{height:40px}
-  nav.main{gap:.1rem .2rem}
-  nav.main button{padding:.5rem .4rem;font-size:.8rem}
+  .brand img{height:clamp(40px,11vw,48px)}
+  /* All five links must sit on ONE row at every phone width. Sizing them in vw
+     rather than rem does that by construction: the type shrinks with the screen,
+     and because vw does not respond to the browser's text-scaling setting, a
+     reader with large type set does not push "Contact" onto a second line either.
+     Fixed rem steps are what broke this before - 390px fit, 412px did not. */
+  nav.main{flex:1 1 100%;margin-left:0;margin-inline:-.4rem;justify-content:center;
+           gap:.1rem;flex-wrap:wrap}
+  nav.main button{white-space:nowrap;letter-spacing:0;
+                  font-size:clamp(.68rem,3.05vw,.86rem);
+                  padding:.55rem clamp(.16rem,1.05vw,.5rem)}
 }
 .btn{
   font-family:"Archivo",Arial,sans-serif;font-size:.9rem;font-weight:600;letter-spacing:.01em;
