@@ -317,6 +317,9 @@ figcaption{margin-top:.6rem;font-size:var(--step--1);color:var(--muted);font-fam
 .rows > li h3{font-size:var(--step-1)}
 .rows > li p{color:var(--ink-soft)}
 @media(max-width:760px){.rows > li{grid-template-columns:1fr;gap:.4rem}}
+/* .rows sitting in one half of a .two: the 22ch title column has nowhere near
+   the room it needs there, so stack the title over its line instead. */
+.rows.tight > li{grid-template-columns:1fr;gap:.3rem;padding:1.15rem 0}
 
 /* spec list */
 .spec{display:grid;grid-template-columns:repeat(2,1fr);gap:0 clamp(1.5rem,4vw,3rem)}
@@ -788,24 +791,20 @@ footer.site img.mark{height:clamp(88px,9vw,120px);width:clamp(88px,9vw,120px);ma
   </section>
 
   <section class="band">
-    <div class="wrap stack gap-l">
-      <div class="two">
-        <div class="stack gap-m">
-          <span class="label">Values</span>
-          <h2>How we work</h2>
-          <p style="color:var(--ink-soft)">We work in teams of two or three, with a solo cleaner on smaller regular sites. Every cleaner is experienced, trained and supervised, police and reference checked, and arrives fully equipped.</p>
-        </div>
-        <figure>
-          <img src="img/cleaner-detail-cleaning-joinery-melbourne.jpg" width="1080" height="969" loading="lazy" decoding="async" alt="Blancoz cleaner detail cleaning the top of joinery during a Melbourne commercial clean">
-          <figcaption>Detail work above eye line &middot; the part most cleaners skip</figcaption>
-        </figure>
+    <div class="wrap two">
+      <div class="stack gap-m">
+        <span class="label">Values</span>
+        <ul class="rows tight">
+          <li><h3>Communication</h3><p>Proactive contact so the job is coordinated properly and finished to standard.</p></li>
+          <li><h3>Reliability</h3><p>Your clean happens when you need it, to your specifications.</p></li>
+          <li><h3>Quality</h3><p>High standards guaranteed on every job, and we aim to beat expectations rather than meet them.</p></li>
+          <li><h3>Client focused</h3><p>Team size, schedule and method are built around your premises.</p></li>
+        </ul>
       </div>
-      <ul class="rows">
-        <li><h3>Communication</h3><p>Proactive contact so the job is coordinated properly and finished to standard.</p></li>
-        <li><h3>Reliability</h3><p>Your clean happens when you need it, to your specifications.</p></li>
-        <li><h3>Quality</h3><p>High standards guaranteed on every job, and we aim to beat expectations rather than meet them.</p></li>
-        <li><h3>Client focused</h3><p>Team size, schedule and method are built around your premises.</p></li>
-      </ul>
+      <figure>
+        <img src="img/cleaner-detail-cleaning-joinery-melbourne.jpg" width="1080" height="969" loading="lazy" decoding="async" alt="Blancoz cleaner detail cleaning the top of joinery during a Melbourne commercial clean">
+        <figcaption>Detail work above eye line &middot; the part most cleaners skip</figcaption>
+      </figure>
     </div>
   </section>
 
