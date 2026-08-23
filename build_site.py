@@ -180,6 +180,55 @@ for key, (src, name, alt) in IMAGES.items():
     frag = re.sub(rf'(src="img/{re.escape(name)}"[^>]*?)alt="[^"]*"', rf'\1alt="{alt}"', frag)
     frag = re.sub(rf'alt="[^"]*"([^>]*?src="img/{re.escape(name)}")', rf'alt="{alt}"\1', frag)
 
+# ---------------------------------------------------------------------------
+# SOCIAL CARD
+#
+# The link preview (Facebook, WhatsApp, LinkedIn, iMessage, Google) used to be
+# the raw hero JPEG, so it showed the photo in full colour while the same photo
+# on the page is greyscale and darkened by CSS. Anyone who saw the preview and
+# then the site saw two different images. This renders the card the page sees:
+# the SAME filter the hero carries, at the 1200x630 every scraper wants.
+#
+# Keep the numbers below in step with .hero img.bg in the template.
+# ---------------------------------------------------------------------------
+SOCIAL_NAME = "commercial-cleaning-melbourne-blancoz-social-card.jpg"
+SOCIAL_W, SOCIAL_H = 1200, 630
+# Matches: filter: grayscale(1) contrast(1.06) brightness(.72)
+SOCIAL_CONTRAST, SOCIAL_BRIGHTNESS = 1.06, 0.72
+# Where to take the crop from vertically, 0 = top, 1 = bottom. Slightly above
+# centre so the crew stays in frame rather than sliding out of the top.
+SOCIAL_CROP_Y = 0.35
+
+def build_social_card():
+    from PIL import Image
+    src = SRC / IMAGES["HERO"][0]
+    im = Image.open(src).convert("RGB")
+
+    # object-fit: cover, into the 1200x630 card.
+    target = SOCIAL_W / SOCIAL_H
+    w, h = im.size
+    if w / h > target:                      # source too wide, trim the sides
+        cw, ch = int(round(h * target)), h
+        box = ((w - cw) // 2, 0, (w - cw) // 2 + cw, ch)
+    else:                                   # source too tall, trim top/bottom
+        cw, ch = w, int(round(w / target))
+        top = int(round((h - ch) * SOCIAL_CROP_Y))
+        box = (0, top, cw, top + ch)
+    im = im.crop(box).resize((SOCIAL_W, SOCIAL_H), Image.LANCZOS)
+
+    # grayscale(1) -> contrast() -> brightness(), in that order, in sRGB, which
+    # is the order and the space the browser applies them in.
+    lut_c = [max(0, min(255, round(((v / 255 - .5) * SOCIAL_CONTRAST + .5) * SOCIAL_BRIGHTNESS * 255)))
+             for v in range(256)]
+    im = im.convert("L").point(lut_c).convert("RGB")
+
+    out = IMGDIR / SOCIAL_NAME
+    im.save(out, "JPEG", quality=86, optimize=True, progressive=True)
+    return out
+
+_social = build_social_card()
+print(f"social card  {_social.stat().st_size // 1024} KB  {SOCIAL_W}x{SOCIAL_H}")
+
 split = frag.rindex("</style>") + len("</style>")
 head, body = frag[:split], frag[split:]
 
@@ -268,11 +317,15 @@ doc = f"""<!doctype html>
 <meta property="og:description" content="{DESC}">
 <meta property="og:url" content="{SITE}/">
 <meta property="og:locale" content="en_AU">
-<meta property="og:image" content="{SITE}/img/commercial-cleaning-melbourne-blancoz-team.jpg">
+<meta property="og:image" content="{SITE}/img/{SOCIAL_NAME}">
+<meta property="og:image:width" content="{SOCIAL_W}">
+<meta property="og:image:height" content="{SOCIAL_H}">
+<meta property="og:image:alt" content="{IMAGES['HERO'][2]}">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Commercial Cleaning Melbourne | Blancoz Cleaning">
 <meta name="twitter:description" content="{DESC}">
-<meta name="twitter:image" content="{SITE}/img/commercial-cleaning-melbourne-blancoz-team.jpg">
+<meta name="twitter:image" content="{SITE}/img/{SOCIAL_NAME}">
+<meta name="twitter:image:alt" content="{IMAGES['HERO'][2]}">
 <script type="application/ld+json">
 {LD}
 </script>
