@@ -184,47 +184,95 @@ for key, (src, name, alt) in IMAGES.items():
 # SOCIAL CARD
 #
 # The link preview (Facebook, WhatsApp, LinkedIn, iMessage, Google) used to be
-# the raw hero JPEG, so it showed the photo in full colour while the same photo
-# on the page is greyscale and darkened by CSS. Anyone who saw the preview and
-# then the site saw two different images. This renders the card the page sees:
-# the SAME filter the hero carries, at the 1200x630 every scraper wants.
+# the raw hero JPEG: full colour, where the same photo on the page is greyscale
+# and darkened by CSS, and with no branding on it at all. Anyone who saw a
+# shared link and then opened the site saw two different images.
 #
-# Keep the numbers below in step with .hero img.bg in the template.
+# This renders the card the page implies. Same filter the hero carries, the
+# crop Juan framed, the logotype and a "COMMERCIAL CLEANING" line set in the
+# site's own label style.
+#
+# The crop box below is not eyeballed. Juan sent back a re-cropped mock, and it
+# was registered against the source photo by normalised cross-correlation
+# (0.998), so these are the exact pixels he framed. The logo geometry was
+# measured off that same mock. Do not "tidy" these numbers.
+#
+# Keep SOCIAL_CONTRAST / SOCIAL_BRIGHTNESS in step with .hero img.bg, and the
+# label styling in step with .label, both in the template.
 # ---------------------------------------------------------------------------
 SOCIAL_NAME = "commercial-cleaning-melbourne-blancoz-social-card.jpg"
-SOCIAL_W, SOCIAL_H = 1200, 630
+# 2:1, the rectangle Juan asked for. Rendered at 2x the source crop so the
+# logotype and lettering are genuinely sharp on retina displays; the photo
+# itself only holds 780px of real detail, hence the unsharp pass after resize.
+SOCIAL_W, SOCIAL_H = 1600, 800
 # Matches: filter: grayscale(1) contrast(1.06) brightness(.72)
 SOCIAL_CONTRAST, SOCIAL_BRIGHTNESS = 1.06, 0.72
-# Where to take the crop from vertically, 0 = top, 1 = bottom. Slightly above
-# centre so the crew stays in frame rather than sliding out of the top.
-SOCIAL_CROP_Y = 0.35
+# Registered crop, in source pixels: 780x390 out of 1079x957.
+SOCIAL_CROP = (260, 136, 1040, 526)
+# Logo placement, as fractions of the card, measured off Juan's mock. Only the
+# vertical was changed, lifted from .59 so the second line has room and the
+# whole lockup still clears the 1.91:1 area Facebook crops a 2:1 image to.
+SOCIAL_LOGO_LEFT, SOCIAL_LOGO_W, SOCIAL_LOGO_TOP = 0.0675, 0.5936, 0.500
+SOCIAL_SUB = "COMMERCIAL CLEANING"
+FONT_FILE = HERE / "vendor/Archivo.ttf"     # OFL, vendored so builds are reproducible
+
 
 def build_social_card():
-    from PIL import Image
-    src = SRC / IMAGES["HERO"][0]
-    im = Image.open(src).convert("RGB")
+    from PIL import Image, ImageDraw, ImageFont, ImageFilter
 
-    # object-fit: cover, into the 1200x630 card.
-    target = SOCIAL_W / SOCIAL_H
-    w, h = im.size
-    if w / h > target:                      # source too wide, trim the sides
-        cw, ch = int(round(h * target)), h
-        box = ((w - cw) // 2, 0, (w - cw) // 2 + cw, ch)
-    else:                                   # source too tall, trim top/bottom
-        cw, ch = w, int(round(w / target))
-        top = int(round((h - ch) * SOCIAL_CROP_Y))
-        box = (0, top, cw, top + ch)
-    im = im.crop(box).resize((SOCIAL_W, SOCIAL_H), Image.LANCZOS)
+    im = (Image.open(SRC / IMAGES["HERO"][0]).convert("RGB")
+          .crop(SOCIAL_CROP).resize((SOCIAL_W, SOCIAL_H), Image.LANCZOS))
 
     # grayscale(1) -> contrast() -> brightness(), in that order, in sRGB, which
     # is the order and the space the browser applies them in.
-    lut_c = [max(0, min(255, round(((v / 255 - .5) * SOCIAL_CONTRAST + .5) * SOCIAL_BRIGHTNESS * 255)))
-             for v in range(256)]
-    im = im.convert("L").point(lut_c).convert("RGB")
+    lut = [max(0, min(255, round(((v / 255 - .5) * SOCIAL_CONTRAST + .5) * SOCIAL_BRIGHTNESS * 255)))
+           for v in range(256)]
+    im = im.convert("L").point(lut).convert("RGB")
+    # Recover the edge definition the 2x upscale cost. Gentle: enough to look
+    # crisp, not enough to ring around the mirror frames.
+    im = im.filter(ImageFilter.UnsharpMask(radius=1.6, percent=85, threshold=3))
+
+    # Fade to black up from the lower half, so white type always has ground.
+    ramp = Image.new("L", (1, SOCIAL_H))
+    rpx = ramp.load()
+    for y in range(SOCIAL_H):
+        d = (y - SOCIAL_H * 0.40) / (SOCIAL_H * 0.60)
+        rpx[0, y] = int(max(0.0, min(1.0, d)) ** 1.5 * 0.48 * 255)
+    im = Image.composite(Image.new("RGB", im.size, (0, 0, 0)),
+                         im, ramp.resize(im.size)).convert("RGBA")
+
+    # Logotype: trimmed to its ink (the PNG carries padding), recoloured white,
+    # because the only mark we hold is black and black dies on a dark photo.
+    lg = Image.open(SRC / IMAGES["LOGO"][0]).convert("RGBA")
+    lg = lg.crop(lg.getchannel("A").getbbox())
+    lw = int(round(SOCIAL_LOGO_W * SOCIAL_W))
+    lg = lg.resize((lw, int(round(lw * lg.height / lg.width))), Image.LANCZOS)
+    white = Image.new("RGBA", lg.size, (255, 255, 255, 255))
+    white.putalpha(lg.getchannel("A"))
+    lx, ly = int(round(SOCIAL_LOGO_LEFT * SOCIAL_W)), int(round(SOCIAL_LOGO_TOP * SOCIAL_H))
+    im.alpha_composite(white, (lx, ly))
+
+    # Sub-line, in the site's own .label style: Archivo 600, .15em, uppercase.
+    d = ImageDraw.Draw(im)
+    f = ImageFont.truetype(str(FONT_FILE), round(SOCIAL_W * 0.0258))
+    f.set_variation_by_axes([600, 100])                 # weight, width
+    track = f.size * 0.15
+    y = ly + lg.height + round(SOCIAL_H * 0.050)
+    width = sum(d.textlength(c, font=f) for c in SOCIAL_SUB) + track * (len(SOCIAL_SUB) - 1)
+    d.line([(lx, y - round(SOCIAL_H * 0.025)), (lx + width, y - round(SOCIAL_H * 0.025))],
+           fill=(255, 255, 255, 90), width=max(2, SOCIAL_H // 400))
+    x = lx
+    for ch in SOCIAL_SUB:                               # PIL has no letter-spacing
+        d.text((x, y), ch, font=f, fill=(255, 255, 255, 232))
+        x += d.textlength(ch, font=f) + track
 
     out = IMGDIR / SOCIAL_NAME
-    im.save(out, "JPEG", quality=86, optimize=True, progressive=True)
+    # subsampling=0 keeps the chroma full-resolution, which is what stops JPEG
+    # smearing the hard white edges of the logotype and the lettering.
+    im.convert("RGB").save(out, "JPEG", quality=94, optimize=True,
+                           progressive=True, subsampling=0)
     return out
+
 
 _social = build_social_card()
 print(f"social card  {_social.stat().st_size // 1024} KB  {SOCIAL_W}x{SOCIAL_H}")
