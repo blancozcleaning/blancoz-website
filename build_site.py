@@ -289,8 +289,7 @@ DESC = ("Commercial and builders cleaning across Melbourne CBD, Bayside and the 
 # Social card only. Deliberately shorter than DESC: the og/twitter description sits under
 # the slogan on Facebook and LinkedIn, so it carries locations and credentials, nothing else.
 # DESC above stays long because it is the Google search snippet and needs the keywords.
-SOCIAL_DESC = ("Melbourne CBD, Bayside and the South Eastern Suburbs. Family owned since 2009. "
-               "Labour Hire Authority licensed, police-checked staff, $20M public liability, "
+SOCIAL_DESC = ("Labour Hire Authority licensed, police-checked staff, $20M public liability, "
                "and a photo report after every clean.")
 
 LD = '''{
