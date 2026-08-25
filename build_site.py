@@ -361,7 +361,7 @@ doc = f"""<!doctype html>
 <meta name="geo.placename" content="Melbourne, Victoria">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Blancoz Cleaning">
-<meta property="og:title" content="Cleaning You Never Have to Chase">
+<meta property="og:title" content="Cleaning You Never Have to Think About">
 <meta property="og:description" content="{DESC}">
 <meta property="og:url" content="{SITE}/">
 <meta property="og:locale" content="en_AU">
@@ -370,7 +370,7 @@ doc = f"""<!doctype html>
 <meta property="og:image:height" content="{SOCIAL_H}">
 <meta property="og:image:alt" content="{IMAGES['HERO'][2]}">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="Cleaning You Never Have to Chase">
+<meta name="twitter:title" content="Cleaning You Never Have to Think About">
 <meta name="twitter:description" content="{DESC}">
 <meta name="twitter:image" content="{SITE}/img/{SOCIAL_NAME}">
 <meta name="twitter:image:alt" content="{IMAGES['HERO'][2]}">
